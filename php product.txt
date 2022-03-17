@@ -1,0 +1,31 @@
+  <?php
+include 'connection.php';
+if (isset($_POST['btn'])) {
+$name = $_POST['name'];
+$image = $_FILES['image']['name'];
+$tmpimage = $_FILES['image']['tmp_name'];
+$price = $_POST['price'];
+$description = $_POST['description'];
+$upid=rand(10000, 99999);
+    # code...
+
+if(move_uploaded_file($tmpimage,"images/".$image)){
+    $qu = mysqli_query($con,"INSERT INTO reg values('','07$upid','$name','$image','PKR: $price','$description')");
+
+
+
+if ($qu) {
+    echo "Product has been Successfully Added :)";
+
+}
+
+else {
+    echo "Hmm! Something Wrong"."<br>";
+}}
+else {
+    echo "Image Error". "<br>";
+}
+}
+        
+        
+        ?>
